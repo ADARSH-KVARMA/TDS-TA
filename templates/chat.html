@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtual TA Chatbot</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Ask your Teaching Assistant</h1>
+    <form method="post">
+      <label for="question">Question:</label><br>
+      <textarea name="question" rows="4" placeholder="Type your question…" required>{{ question }}</textarea><br><br>
+
+      <label for="image_url">Image Link (optional):</label><br>
+      <input type="url" name="image_url" placeholder="https://example.com/image.png" value="{{ image_url }}"><br><br>
+
+      <button type="submit">Ask</button>
+    </form>
+
+    {% if answer %}
+      <div class="response">
+        <h3>TA Answer:</h3>
+        <p>{{ answer }}</p>
+
+        {% if links %}
+          <h4>Related Links:</h4>
+          <ul>
+            {% for link in links %}
+              <li><a href="{{ link.url }}" target="_blank">{{ link.text }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if image_url %}
+          <h4>Submitted Image:</h4>
+          <img src="{{ image_url }}" alt="Submitted Image" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
