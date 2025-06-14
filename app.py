@@ -12,7 +12,7 @@ from flask_cors import CORS
 
 load_dotenv()
 
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "OPTIONS"])
+
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 openai_api_base = "https://aiproxy.sanand.workers.dev/openai/v1/"
@@ -174,6 +174,8 @@ Context:
 
 
 app = Flask(__name__)
+
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "OPTIONS"])
 
 @app.route("/", methods=["POST","GET"])
 def chat():
