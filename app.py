@@ -16,7 +16,7 @@ openai_api_base = "https://aiproxy.sanand.workers.dev/openai/v1/"
 
 def get_top_chunks(question_embedding, npz_path='rag_data.npz', top_k=5):
     # Load the .npz file
-    data = np.load(npz_path, allow_pickle=True)
+    data = np.load(npz_path, allow_pickle=True, mmap_mode='r')
     contents = data['contents']
     titles = data['title']
     urls = data['url']
